@@ -26,11 +26,17 @@ const TasksPending = () => {
                         <p className={style.contentDescription_task}>description tasks..</p>
                     </div>
                     <div className={style.content_buttons}>
-                        <button className={style.content_buttons_finishTask}><i className="far fa-check-circle"></i></button>
+                        <button className={style.content_buttons_finishTask} type='button'>
+                            <i className="far fa-check-circle"></i>
+                        </button>
 
-                        <button className={style.content_buttons_editTask} ><i className="far fa-edit"></i></button>
+                        <button className={style.content_buttons_editTask} type='button'>
+                            <i className="far fa-edit"></i>
+                        </button>
 
-                        <button className={style.content_buttons_deleteTask}><i className="fas fa-trash"></i></button>
+                        <button className={style.content_buttons_deleteTask} type='button'>
+                            <i className="fas fa-trash"></i>
+                        </button>
                     </div>
                 </div>
 

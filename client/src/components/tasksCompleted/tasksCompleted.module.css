@@ -1,0 +1,39 @@
+.contentTasksCompleted {
+    background: #fff;
+    width: 50%;
+    margin: auto;
+    padding: 8px;
+    margin-top: 2.5rem;
+    border-radius: 3px;
+}
+
+.contentTasksCompleted_title {
+    font-size: 25px;
+}
+.contentDescription_button {
+    margin-top: 1rem;
+    margin-bottom: 0.5rem ;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 2px;
+    border-bottom: 1px solid rgb(218, 213, 213);
+}
+.contentDescription {
+    width: 78%;
+}
+
+.content_button { 
+    width: 14px;
+}
+.content_button_deleteTask {
+    font-size: 16px;
+    border: none;
+    margin-right: 4px;
+    cursor: pointer;
+
+}
+
+.content_button_deleteTask:focus {
+    outline: none;
+}

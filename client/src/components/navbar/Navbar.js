@@ -10,9 +10,15 @@ const Navbar = () => {
             </div>
             <div className={style.navbar_content_items}>
                 <ul className={style.navbar_content_ul}>
-                    <li className={style.navbar_content_links}><Link to='/'>Pendientes</Link></li>
-                    <li className={style.navbar_content_links}><Link to='/tareas-realizadas'>Realizadas</Link></li>
-                    <li className={style.navbar_content_links}><Link to='/tareas-retiradas'>Retiradas</Link></li>
+                    <Link to='/' className={style.navbar_content_links}>
+                        Pendientes
+                    </Link>
+                    <Link to='/tareas-realizadas' className={style.navbar_content_links}>
+                        Realizadas
+                    </Link>
+                    <Link to='/tareas-retiradas' className={style.navbar_content_links}>
+                        Retiradas
+                    </Link>
                 </ul>
             </div>
         </div>
