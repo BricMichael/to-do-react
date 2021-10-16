@@ -1,0 +1,57 @@
+.contentModal_edit {
+    background: #fff;
+    width: 415px;
+    height: 170px;
+    border-radius: 3px;
+    color: #000;
+    padding: 8px;
+}
+
+.contentModal_title {
+    font-size: 25px;
+}
+
+.contentModal_form {
+    display: flex;
+    flex-direction: column;
+}
+
+.contentModal_input:focus, .contentModal_buttonSave:focus, .contentModal_buttonClose:focus {
+    outline: none;
+} 
+
+.contentModal_input {
+    font-size: 14px;
+    padding: 3px;
+    border: none;
+    border-bottom: 1px solid #000;
+    margin-bottom: 1.3rem;
+}
+
+.contentModal_buttonSave, .contentModal_buttonClose {
+    width: 160px;
+    margin-top: 0.6rem;
+    border: none;
+    padding: 4px;
+    cursor: pointer;
+    border-radius: 3px;
+    font-size: 15px;
+    color: rgb(12, 10, 10);
+    transition: background .3s ease;
+}
+
+.contentModal_buttonSave {
+    background: #13b9b9;
+}
+
+.contentModal_buttonSave:hover {
+    background: #12dfdf;;
+}
+
+.contentModal_buttonClose {
+    background: #f13838d7;
+}
+
+.contentModal_buttonClose:hover {
+    background: #cc1a1ad7;
+}

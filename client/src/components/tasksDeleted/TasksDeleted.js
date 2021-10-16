@@ -29,7 +29,7 @@ const TasksDeleted = () => {
                             <p className={style.contentDescription_task}><strong>Tarea:</strong>&nbsp;{task.description}</p>
 
                             <p className={style.contentDescription_created}><strong>Creada:</strong> {task.registration_date}</p>
-                            <p className={style.contentDescription_deleted}><strong>Terminada:</strong> {task.inactive_task_date}</p>
+                            <p className={style.contentDescription_deleted}><strong>Eliminada:</strong> {task.inactive_task_date}</p>
                         </div>
                         <div className={style.content_button}>
                             <button className={style.content_button_undoTask} type='button' onClick={() => undoTask(task.id)}>

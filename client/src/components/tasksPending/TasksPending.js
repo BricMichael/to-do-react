@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
-import { deleteTaskAction, getTasksPendingAction } from '../../actions/tasksActions';
+import { deleteTaskAction, getTasksPendingAction, taskCompletedAction } from '../../actions/tasksActions';
 import FilterSearch from '../filterSearch/FilterSearch';
+import EditTask from '../modal/EditTask';
 import PhrasesCatsRandom from '../phrasesCats/PhrasesCatsRandom';
 import style from './tasksPending.module.css';
 
 const TasksPending = () => {
-
+    const [openModal, setOpenModal] = useState(false);
     const [tasksPending, setTasksPending] = useState([]);
 
     const getTasks = async () => {
@@ -18,11 +19,15 @@ const TasksPending = () => {
     }, [])
 
     const deleteTask = (id) => {
-        deleteTaskAction(id)
+        deleteTaskAction(id, tasksPending, setTasksPending);
     }
+
+    const taskCompleted = (id) => taskCompletedAction(id, tasksPending, setTasksPending);
 
     return (
         <>
+            {openModal && <EditTask closeModal={setOpenModal} />}
+
             <div className={style.contentApiCatsFilterTasks}>
                 <FilterSearch />
                 <PhrasesCatsRandom />
@@ -45,11 +50,19 @@ const TasksPending = () => {
                                 <p className={style.contentDescription_task}>{task.description}</p>
                             </div>
                             <div className={style.content_buttons}>
-                                <button className={style.content_buttons_finishTask} type='button'>
+                                <button
+                                    className={style.content_buttons_finishTask}
+                                    type='button'
+                                    onClick={() => taskCompleted(task.id)}
+                                >
                                     <i className="far fa-check-circle"></i>
                                 </button>
 
-                                <button className={style.content_buttons_editTask} type='button'>
+                                <button
+                                    className={style.content_buttons_editTask}
+                                    type='button'
+                                    onClick={() => setOpenModal(true)}
+                                >
                                     <i className="far fa-edit"></i>
                                 </button>
 

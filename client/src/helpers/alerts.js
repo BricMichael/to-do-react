@@ -27,3 +27,19 @@ export const alertDeleteItems = async (msgTitle) => {
     if (isConfirmed) return true;
     else return false;
 }
+
+export const alertQuestionItems = async (msgTitle) => {
+    const { isConfirmed } = await Swal.fire({
+        text: msgTitle,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#13b9b9',
+        confirmButtonText: 'Confirmar',
+        cancelButtonText: 'Cancelar',
+        width: '455px',
+    })
+
+    if (isConfirmed) return true;
+    else return false;
+
+}
