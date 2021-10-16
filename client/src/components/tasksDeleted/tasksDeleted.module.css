@@ -1,0 +1,33 @@
+.contentTasksDeleted {
+    background: #fff;
+    width: 50%;
+    margin: auto;
+    padding: 8px;
+    margin-top: 2.5rem;
+    border-radius: 3px;
+}
+.contentTasksDeleted_title {
+    font-size: 25px;
+}
+.contentDescription_button {
+    margin-top: 1rem;
+    margin-bottom: 0.5rem ;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 2px;
+    border-bottom: 1px solid rgb(218, 213, 213);
+}
+.contentDescription {
+    width: 90%;
+}
+.contentDescription_task {
+    word-wrap: break-word;
+}
+
+.content_button_undoTask {
+    font-size: 20px;
+    border: none;
+    margin-right: 4px;
+    cursor: pointer;
+}
