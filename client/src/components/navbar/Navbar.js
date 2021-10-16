@@ -10,7 +10,7 @@ const Navbar = () => {
             </div>
             <div className={style.navbar_content_items}>
                 <ul className={style.navbar_content_ul}>
-                    <li className={style.navbar_content_links}><Link to='/tareas-pendientes'>Pendientes</Link></li>
+                    <li className={style.navbar_content_links}><Link to='/'>Pendientes</Link></li>
                     <li className={style.navbar_content_links}><Link to='/tareas-realizadas'>Realizadas</Link></li>
                     <li className={style.navbar_content_links}><Link to='/tareas-retiradas'>Retiradas</Link></li>
                 </ul>

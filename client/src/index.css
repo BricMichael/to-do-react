@@ -7,9 +7,11 @@ body {
   font-family: 'Poppins', 'gilroy-bold', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: #f0f2f5;
 }
 
 a {
   text-decoration: none;
   color: #000;
 }
+

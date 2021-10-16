@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Navbar from '../components/navbar/Navbar';
 import TasksCompleted from '../components/tasksCompleted/TasksCompleted';
 import TasksDeleted from '../components/tasksDeleted/TasksDeleted';
-import TasksPending from '../components/tasksPending/TasksPending';
+import Home from '../pages/Home';
 
 
 const Routes = () => {
@@ -11,7 +11,7 @@ const Routes = () => {
             <Navbar />
 
             <Switch>
-                <Route path='/tareas-pendientes' exact component={TasksPending} />
+                <Route path='/' exact component={Home} />
                 <Route path='/tareas-realizadas' exact component={TasksCompleted} />
                 <Route path='/tareas-retiradas' exact component={TasksDeleted} />
             </Switch>

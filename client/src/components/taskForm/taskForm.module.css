@@ -1,0 +1,46 @@
+.contentFormTask {
+    background: #ffffff;
+    margin: 2.5rem auto 1.5rem auto;
+    max-width: 390px;
+    padding: 5px;
+    border-radius: 3px;
+    
+}
+
+.formTask_Title {
+    margin-bottom: 0.6rem;
+}
+
+.formTask {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.formTask_input {
+    padding: 6px 3px;
+    border-radius: 1px;
+    font-size: 15px;
+    width: 280px;
+    border: none;
+    border: 1px solid rgb(212, 206, 206);
+}
+
+.formTask_button {
+    border: none;
+    background: #00ffff;
+    border-radius: 3px;
+    font-size: 15px;
+    width: 70px;
+    height: 30px;
+    cursor: pointer;
+    transition: background .3s ease;
+}
+
+.formTask_button:hover {
+    background: #16c5c5;
+}
+
+.formTask_input:focus, .formTask_input:focus {
+    outline: none;
+}

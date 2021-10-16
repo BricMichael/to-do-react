@@ -1,0 +1,76 @@
+.contentApiCatsFilterTasks {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 60%;
+    margin: auto;
+    margin-bottom: 25px;
+}
+
+.contentTasksPending  {
+    background: #fff;
+    width: 60%;
+    margin: auto;
+    padding: 4px;
+    border-radius: 3px;
+}
+
+.contentTasksPending_Top {
+    display: flex;
+}
+
+.contentTasksPending_title {
+    font-size: 18px;
+}
+
+.contentTasksPending_options {
+    border: none;
+    padding: 5px;
+    font-size: 14.2px;
+    margin-left: 18px;
+    border-bottom: 1px solid rgb(218, 213, 213);
+}
+.contentTasksPending_options:focus {
+    outline: none;
+}
+
+.contentDescription_buttons {
+    margin-top: 1rem;
+    margin-bottom: 0.5rem ;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 2px;
+    border-bottom: 1px solid rgb(218, 213, 213);
+}
+
+.contentDescription {
+    width: 78%;
+}
+
+.contentDescription_task {
+    word-wrap: break-word;
+    font-size: 14.8px;
+}
+
+.content_buttons {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 15%;
+}
+.content_buttons_finishTask, .content_buttons_editTask, .content_buttons_deleteTask  { 
+    margin: 0 6px; 
+    padding: 3px;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    color: rgb(20, 20, 20);
+    background: transparent;
+}
+
+
+.content_buttons_editTask, .content_buttons_deleteTask, .content_buttons_finishTask {
+    font-size: 16px;
+}
+
