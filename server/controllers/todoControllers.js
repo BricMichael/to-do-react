@@ -24,7 +24,7 @@ const newTask = async (req, res) => {
         await pool.query(`INSERT INTO todo( description, status, inactive, registration_date ) VALUES ($1, $2, $3, $4)`,
             [description.trim(), status, inactive, dateToday]);
 
-        res.status(200).json({ response: 'registro exitoso' });
+        res.status(200).json({ response: 'Tarea agregada' });
     } catch (err) {
         console.log('Error: newTask', err.message);
     }

@@ -1,3 +1,4 @@
+import { createTaskAction } from '../../actions/tasksActions';
 import { useForm } from '../../helpers/useForm';
 import style from './taskForm.module.css';
 
@@ -6,8 +7,10 @@ const TaskForm = () => {
     con un solo input no hace la diferencia, pero con un par más, es una excelente opcion.  */
     const [values, handleInputChange, reset] = useForm({ description: '' });
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        await createTaskAction(values.description);
+        reset();
     }
 
     return (

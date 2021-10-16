@@ -1,8 +1,26 @@
+import { useEffect, useState } from 'react';
+import { deleteTaskAction, getTasksPendingAction } from '../../actions/tasksActions';
 import FilterSearch from '../filterSearch/FilterSearch';
 import PhrasesCatsRandom from '../phrasesCats/PhrasesCatsRandom';
 import style from './tasksPending.module.css';
 
 const TasksPending = () => {
+
+    const [tasksPending, setTasksPending] = useState([]);
+
+    const getTasks = async () => {
+        const data = await getTasksPendingAction();
+        setTasksPending(data);
+    }
+
+    useEffect(() => {
+        getTasks();
+    }, [])
+
+    const deleteTask = (id) => {
+        deleteTaskAction(id)
+    }
+
     return (
         <>
             <div className={style.contentApiCatsFilterTasks}>
@@ -20,26 +38,31 @@ const TasksPending = () => {
                     </select>
                 </div>
 
+                {
+                    tasksPending.map(task => (
+                        <div className={style.contentDescription_buttons} key={task.id} >
+                            <div className={style.contentDescription}>
+                                <p className={style.contentDescription_task}>{task.description}</p>
+                            </div>
+                            <div className={style.content_buttons}>
+                                <button className={style.content_buttons_finishTask} type='button'>
+                                    <i className="far fa-check-circle"></i>
+                                </button>
 
-                <div className={style.contentDescription_buttons}>
-                    <div className={style.contentDescription}>
-                        <p className={style.contentDescription_task}>description tasks..</p>
-                    </div>
-                    <div className={style.content_buttons}>
-                        <button className={style.content_buttons_finishTask} type='button'>
-                            <i className="far fa-check-circle"></i>
-                        </button>
+                                <button className={style.content_buttons_editTask} type='button'>
+                                    <i className="far fa-edit"></i>
+                                </button>
 
-                        <button className={style.content_buttons_editTask} type='button'>
-                            <i className="far fa-edit"></i>
-                        </button>
-
-                        <button className={style.content_buttons_deleteTask} type='button'>
-                            <i className="fas fa-trash"></i>
-                        </button>
-                    </div>
-                </div>
-
+                                <button
+                                    className={style.content_buttons_deleteTask}
+                                    type='button'
+                                    onClick={() => deleteTask(task.id)}>
+                                    <i className="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                    ))
+                }
             </div>
         </>
     )
