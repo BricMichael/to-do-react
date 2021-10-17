@@ -7,12 +7,6 @@ const validateProcess = (res, rowCount, msgError, msgSuccess) => {
         : res.json({ response: msgSuccess })
 }
 
-const checkExisteData = (res, rowCount, emptyAnswer, data) => {
-    rowCount === 0
-        ? res.json({ response: emptyAnswer })
-        : res.json(data)
-}
-
 
 const newTask = async (req, res) => {
     try {
@@ -37,8 +31,7 @@ const getPendingTasks = async (req, res) => {
         const inactive = false;
         const respDB = await pool.query(`SELECT * FROM todo WHERE status = $1 AND inactive = $2`, [status, inactive]);
 
-        checkExisteData(res, respDB.rowCount, 'No tienes tareas pendientes. Agrega una nueva tarea', respDB.rows);
-
+        res.json(respDB.rows)
     } catch (err) {
         console.log('Error: getPendinTasks', err.message);
     }
@@ -62,9 +55,8 @@ const updateTask = async (req, res) => {
         const idTask = req.params.id;
         const { description } = req.body;
 
-        const respDB = await pool.query(`UPDATE todo SET description = $1 WHERE id = $2`, [description, idTask]);
+        const respDB = await pool.query(`UPDATE todo SET description = $1 WHERE id = $2`, [description.trim(), idTask]);
         validateProcess(res, respDB.rowCount, 'No se encontró ninguna tarea con ese ID', 'Los cambios han sido guardados');
-
     } catch (err) {
         console.log('Error: updateTask', err.message);
     }
@@ -90,8 +82,7 @@ const getCompletedTasks = async (req, res) => {
         const inactive = false;
         const respDB = await pool.query(`SELECT * FROM todo WHERE status = $1 AND inactive = $2`, [status, inactive]);
 
-        checkExisteData(res, respDB.rowCount, 'Aquí verás tus tareas realizadas', respDB.rows);
-
+        res.json(respDB.rows);
     } catch (err) {
         console.log('Error: getCompletedTasks', err.message);
     }
@@ -100,7 +91,7 @@ const getCompletedTasks = async (req, res) => {
 const historyTasks = async (req, res) => {
     const inactive = true; // tareas eliminadas, mostrar historial.
     const respDB = await pool.query(`SELECT * FROM todo WHERE inactive = $1`, [inactive]);
-    checkExisteData(res, respDB.rowCount, 'Aquí podrás ver tus tareas eliminadas', respDB.rows);
+    res.json(respDB.rows);
 }
 
 const undoDeletedTask = async (req, res) => { // Deshacer tarea eliminada.

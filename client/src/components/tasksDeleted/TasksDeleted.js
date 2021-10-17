@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
-import { getHistoryTasksAction, undoTaskAction } from '../../actions/tasksActions';
+import { useDispatch } from 'react-redux';
+import { getHistoryTasksAction, undoTaskAction } from '../../redux/actions/tasksActions';
 import style from './tasksDeleted.module.css';
 
 const TasksDeleted = () => {
-
+    const dispatch = useDispatch();
     const [historyTask, setHistoryTask] = useState([]);
 
     const getTasksDeleted = async () => {
@@ -16,7 +17,7 @@ const TasksDeleted = () => {
     }, [])
 
 
-    const undoTask = (id) => undoTaskAction(id, historyTask, setHistoryTask);
+    const undoTask = (id) => dispatch(undoTaskAction(id, historyTask, setHistoryTask));
 
     return (
         <div className={style.contentTasksDeleted} >

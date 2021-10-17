@@ -1,28 +1,36 @@
 import { useEffect, useState } from 'react';
-import { deleteTaskAction, getTasksPendingAction, taskCompletedAction } from '../../actions/tasksActions';
+import { useSelector, useDispatch } from 'react-redux';
+import { deleteTaskAction, editTaskAction, getTasksPendingAction, taskCompletedAction } from '../../redux/actions/tasksActions';
+import style from './tasksPending.module.css';
 import FilterSearch from '../filterSearch/FilterSearch';
 import EditTask from '../modal/EditTask';
 import PhrasesCatsRandom from '../phrasesCats/PhrasesCatsRandom';
-import style from './tasksPending.module.css';
+
 
 const TasksPending = () => {
+    const dispatch = useDispatch();
+    const taskPendingAndPhrases = useSelector(state => state.task.taskPendingAndPhrases);
     const [openModal, setOpenModal] = useState(false);
     const [tasksPending, setTasksPending] = useState([]);
 
-    const getTasks = async () => {
-        const data = await getTasksPendingAction();
-        setTasksPending(data);
-    }
+    const getTasks = () => dispatch(getTasksPendingAction(setTasksPending));
 
     useEffect(() => {
-        getTasks();
-    }, [])
+        taskPendingAndPhrases.length === 0
+            ? getTasks() // evitar otro llamada a la API al renderizar el componente.
+            : setTasksPending(taskPendingAndPhrases) // usar la data del reducer.
 
-    const deleteTask = (id) => {
-        deleteTaskAction(id, tasksPending, setTasksPending);
-    }
+    }, [taskPendingAndPhrases])
+
+
+    const deleteTask = (id) => deleteTaskAction(id, tasksPending, setTasksPending);
 
     const taskCompleted = (id) => taskCompletedAction(id, tasksPending, setTasksPending);
+
+    const editTask = (taskData) => {
+        dispatch(editTaskAction({ description: taskData.description, id: taskData.id }));
+        setOpenModal(true);
+    }
 
     return (
         <>
@@ -61,7 +69,7 @@ const TasksPending = () => {
                                 <button
                                     className={style.content_buttons_editTask}
                                     type='button'
-                                    onClick={() => setOpenModal(true)}
+                                    onClick={() => editTask(task)}
                                 >
                                     <i className="far fa-edit"></i>
                                 </button>

@@ -10,5 +10,6 @@ export const apiGetTasksDeleted = () => axios.get(`${pathTasks}-inactive`);
 export const apiGetCompletedTasks = () => axios.get(`${pathTasks}-completed`);
 export const apiRegisterTask = (data) => axios.post(pathTasks, data);
 export const apiMarkTaskCompleted = (id) => axios.put(`${pathTasks}-completed/${id}`);
+export const apiUpdateTask = (id, newData) => axios.put(`${pathTasks}/${id}`, newData);
 export const apiDeleteTask = (id) => axios.put(`${pathTasks}-delete/${id}`);
 export const apiUndoTask = (id) => axios.put(`${pathTasks}-undoDeleted/${id}`);

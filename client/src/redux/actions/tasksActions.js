@@ -1,23 +1,33 @@
-import * as api from '../api/api';
-import { alertDeleteItems, alertQuestionItems, alertSuccess } from '../helpers/alerts';
+import * as api from '../../api/api';
+import { alertDeleteItems, alertQuestionItems, alertSuccess } from '../../helpers/alerts';
+import { types } from '../types';
 
-export const createTaskAction = async (task) => {
+
+export const getTasksPendingAction = () => async (dispatch) => {
+    try {
+        const { data } = await api.apiGetPendingTasks();
+
+        data.length >= 1 && dispatch({
+            type: types.newTesk,
+            payload: data
+        })
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+export const createTaskAction = (task, resetInput) => async (dispatch) => {
     try {
         const { data } = await api.apiRegisterTask({ description: task });
+        await dispatch(getTasksPendingAction());
+
+        resetInput();
         alertSuccess(data.response);
     } catch (err) {
         console.log(err);
     }
 }
 
-export const getTasksPendingAction = async () => {
-    try {
-        const { data } = await api.apiGetPendingTasks();
-        return data;
-    } catch (err) {
-        console.log(err);
-    }
-}
 
 export const getHistoryTasksAction = async () => {
     try {
@@ -37,6 +47,25 @@ export const getTasksCompletedAction = async () => {
     }
 }
 
+export const editTaskAction = (datasTask) => (dispatch) => {
+    dispatch({
+        type: types.dataTaskEdit,
+        payload: datasTask
+    })
+}
+
+export const updateTaskAction = (id, newData) => async (dispatch) => {
+    try {
+        const { data } = await api.apiUpdateTask(id, { description: newData });
+        dispatch({
+            type: types.updateTask,
+            payload: { id, description: newData }
+        })
+        alertSuccess(data.response);
+    } catch (err) {
+        console.log(err);
+    }
+}
 
 export const taskCompletedAction = async (id, dataState, updateState) => {
     try {
@@ -59,7 +88,7 @@ export const deleteTaskAction = async (id, dataState, updateState) => {
             const { data } = await api.apiDeleteTask(id);
             const filterData = dataState.filter(task => task.id !== id);
             updateState(filterData);
-            alertSuccess(data.response)
+            alertSuccess(data.response);
         }
 
     } catch (err) {
@@ -67,13 +96,14 @@ export const deleteTaskAction = async (id, dataState, updateState) => {
     }
 }
 
-export const undoTaskAction = async (id, dataState, updateState) => {
+export const undoTaskAction = (id, dataState, updateState) => async (dispatch) => {
     try {
         const { data } = await api.apiUndoTask(id);
 
         const filterData = dataState.filter(task => task.id !== id);
         updateState(filterData);
         alertSuccess(data.response);
+        dispatch(getTasksPendingAction());
     } catch (err) {
         console.log(err);
     }

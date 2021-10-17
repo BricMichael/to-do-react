@@ -1,16 +1,16 @@
-import { createTaskAction } from '../../actions/tasksActions';
+import { createTaskAction } from '../../redux/actions/tasksActions';
 import { useForm } from '../../helpers/useForm';
 import style from './taskForm.module.css';
-
+import { useDispatch } from 'react-redux';
 const TaskForm = () => {
     /*Este useForm permite tener muy limpio el componente de lógica y acelerar el trabajo al mismo tiempo,
     con un solo input no hace la diferencia, pero con un par más, es una excelente opcion.  */
     const [values, handleInputChange, reset] = useForm({ description: '' });
+    const dispatch = useDispatch();
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
-        await createTaskAction(values.description);
-        reset();
+        dispatch(createTaskAction(values.description, reset));
     }
 
     return (

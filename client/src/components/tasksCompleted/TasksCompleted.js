@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { deleteTaskAction, getTasksCompletedAction } from '../../actions/tasksActions';
+import { deleteTaskAction, getTasksCompletedAction } from '../../redux/actions/tasksActions';
 import style from './tasksCompleted.module.css';
 
 const TasksCompleted = () => {

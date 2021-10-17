@@ -8,7 +8,7 @@ export const alertSuccess = (msgAlert) => {
         text: msgAlert,
         showConfirmButton: false,
         timer: 1300,
-        width: '25%'
+        width: '250px'
     })
 }
 
