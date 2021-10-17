@@ -41,15 +41,15 @@
 }
 
 .contentModal_buttonSave {
-    background: #13b9b9;
+    background: #00ffff;
 }
 
 .contentModal_buttonSave:hover {
-    background: #12dfdf;;
+    background: #12dfdf;
 }
 
 .contentModal_buttonClose {
-    background: #f13838d7;
+    background: #eb5858;
 }
 
 .contentModal_buttonClose:hover {

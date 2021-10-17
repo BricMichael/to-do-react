@@ -1,14 +1,34 @@
+import { useEffect, useState } from "react";
+import { useDispatch } from 'react-redux';
 import { useForm } from "../../helpers/useForm";
+import { getTasksPendingAction } from "../../redux/actions/tasksActions";
 import style from './filterSearch.module.css';
 
-const FilterSearch = () => {
+const FilterSearch = ({ setState }) => {
     /*Este useForm permite tener muy limpio el componente de lógica y acelerar el trabajo al mismo tiempo,
     con un solo input no hace la diferencia, pero con un par más, es una excelente opcion.  */
-    const [values, handleInputChange, reset] = useForm({ filtro: '' });
+    const dispatch = useDispatch();
+    const [taskFilters, setTaskFilters] = useState([]);
+    const [values, handleInputChange] = useForm({ filtro: '' });
+
+    const getTasksPending = async () => {
+        const data = await dispatch(getTasksPendingAction('FilterSearch'));
+        setTaskFilters(data);
+    }
+
+    useEffect(() => {
+        getTasksPending();
+    }, [])
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const taskSelected = taskFilters.find(task => task.description === values.filtro.trim());
+        setState([taskSelected]);
+    }
 
     return (
         <div className={style.filterSearch}>
-            <form className={style.formFilter}>
+            <form className={style.formFilter} onSubmit={handleSubmit} >
                 <div className={style.form_group}>
                     <label htmlFor='filter'>Filtrar tareas</label>
                     <input
@@ -23,10 +43,13 @@ const FilterSearch = () => {
                         list='my-list'
                     />
                     <datalist id='my-list'>
-                        <option value='bañar el perro' />
-                        <option value='bañar el bebé' />
-                        <option value='cargar' />
-                        <option value='cabalgar' />
+                        {
+                            taskFilters.map(task => (
+                                <option
+                                    key={task.id}
+                                    value={task.description} />
+                            ))
+                        }
                     </datalist>
                 </div>
 

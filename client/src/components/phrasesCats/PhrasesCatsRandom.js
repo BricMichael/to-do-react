@@ -1,16 +1,23 @@
-import style from './phrasesCatsRandom.module.css'
-
-
+import { useState } from 'react';
+import style from './phrasesCatsRandom.module.css';
 import { useForm } from '../../helpers/useForm';
+
 
 
 const PhrasesCatsRandom = () => {
 
     const [values, handleInputChange, reset] = useForm({ numberPhrases: 0 });
 
+    const [phrasesCats, setPhrasesCats] = useState([]);
+
+
+    const handleSubtmit = (e) => {
+        e.preventDefault();
+    }
+
     return (
         <div className={style.phrasesCatsRamdon}>
-            <form className={style.formRandomPhrases}>
+            <form className={style.formRandomPhrases} onSubmit={handleSubtmit} >
                 <div className={style.form_group}>
                     <label htmlFor='random'>Frases al azar <i className="fas fa-cat"></i></label>
                     <input

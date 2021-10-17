@@ -3,14 +3,15 @@ import { alertDeleteItems, alertQuestionItems, alertSuccess } from '../../helper
 import { types } from '../types';
 
 
-export const getTasksPendingAction = () => async (dispatch) => {
+export const getTasksPendingAction = (component = '') => async (dispatch) => {
     try {
         const { data } = await api.apiGetPendingTasks();
 
-        data.length >= 1 && dispatch({
+        (data.length >= 1 && component === '') && dispatch({
             type: types.newTesk,
             payload: data
         })
+        return data;
     } catch (err) {
         console.log(err);
     }

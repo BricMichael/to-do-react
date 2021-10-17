@@ -13,7 +13,7 @@ const TasksPending = () => {
     const [openModal, setOpenModal] = useState(false);
     const [tasksPending, setTasksPending] = useState([]);
 
-    const getTasks = () => dispatch(getTasksPendingAction(setTasksPending));
+    const getTasks = () => dispatch(getTasksPendingAction());
 
     useEffect(() => {
         taskPendingAndPhrases.length === 0
@@ -32,19 +32,27 @@ const TasksPending = () => {
         setOpenModal(true);
     }
 
+    const optionSelected = ({ target }) => {
+        if (target.value === 'all') {
+            setTasksPending(taskPendingAndPhrases)
+        }
+        console.log(target.value)
+    }
+
     return (
         <>
             {openModal && <EditTask closeModal={setOpenModal} />}
 
             <div className={style.contentApiCatsFilterTasks}>
-                <FilterSearch />
+                <FilterSearch setState={setTasksPending} />
                 <PhrasesCatsRandom />
             </div>
 
             <div className={style.contentTasksPending} >
                 <div className={style.contentTasksPending_Top}>
                     <p className={style.contentTasksPending_title}>Lista de Tareas pendientes</p>
-                    <select className={style.contentTasksPending_options} >
+                    <select className={style.contentTasksPending_options} onChange={optionSelected}>
+                        <option value=''>Filtrar resultados</option>
                         <option value="all">Ver todo</option>
                         <option value="phrases">Frases gatos</option>
                         <option value="tasks">Tareas pendientes</option>
