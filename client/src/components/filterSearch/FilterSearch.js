@@ -15,7 +15,7 @@ const FilterSearch = ({ setState }) => {
 
     const getTasksPending = async () => {
         const data = await dispatch(getTasksPendingAction('FilterSearch'));
-        setTaskFilters(data);
+        data && setTaskFilters(data); // Evitar errores, si no se obtiene respuestas 400 o 500 del servidor  
     }
 
     useEffect(() => {

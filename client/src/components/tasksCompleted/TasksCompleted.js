@@ -9,7 +9,7 @@ const TasksCompleted = () => {
 
     const getTasksCompleted = async () => {
         const data = await getTasksCompletedAction();
-        setCompletedTasks(data);
+        data && setCompletedTasks(data); // Evitar errores, si no se obtiene respuestas 400 o 500 del servidor  
     }
 
     useEffect(() => {

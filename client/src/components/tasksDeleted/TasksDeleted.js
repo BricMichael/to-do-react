@@ -9,7 +9,7 @@ const TasksDeleted = () => {
 
     const getTasksDeleted = async () => {
         const data = await getHistoryTasksAction();
-        setHistoryTask(data);
+        data && setHistoryTask(data); // Evitar errores, si no se obtiene respuestas 400 o 500 del servidor  
     }
 
     useEffect(() => {
