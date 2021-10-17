@@ -1,10 +1,20 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import MenuHamburger from '../modal/MenuHamburger';
 import style from './navbar.module.css';
 
 
 const Navbar = () => {
+
+    const [openModal, setOpenModal] = useState(false);
+
+    const menuDisplay = () => setOpenModal(true);
+
+
+
     return (
         <div className={style.navbar}>
+            {openModal && <MenuHamburger closeModal={setOpenModal} />}
             <div className={style.navbar_content_logo}>
                 <h2 className={style.navbar_logo}>Tareas App</h2>
             </div>
@@ -21,6 +31,7 @@ const Navbar = () => {
                     </Link>
                 </ul>
             </div>
+            <i className={style.hamburgerIcon} onClick={menuDisplay} ><i className="fas fa-bars"></i></i>
         </div>
     )
 }

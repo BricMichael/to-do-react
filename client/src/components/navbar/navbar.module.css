@@ -35,3 +35,18 @@
 .navbar_content_links:hover {
     background: #fff;
 }
+
+.hamburgerIcon {
+    display: none;
+}
+
+@media screen and ( max-width: 900px ) {
+    .navbar_content_items{
+        display: none;
+    }
+    .hamburgerIcon {
+        display: initial;
+        cursor: pointer;
+        font-size: 22px;
+    }
+}

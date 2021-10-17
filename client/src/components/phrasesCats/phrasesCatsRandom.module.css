@@ -1,7 +1,7 @@
 .formRandomPhrases {
     background: #fff;
     border-radius: 3px;
-    width: 290px;
+    width: 100%;
     padding: 5px;
     display: flex;
     align-items: center;
@@ -21,8 +21,10 @@
     border: none;
     padding: 3px;
     border-bottom: 1px solid rgb(207, 199, 199);
-    margin-left: 10px;
+    margin-left: 7px;
     font-size: 14px; 
+    width: 35px;
+    text-align: center;
 }
 
 .formRandom_button {
@@ -31,6 +33,7 @@
     padding: 5px;
     border-radius: 3px;
     cursor: pointer;
+    margin-left: 18px;
 }
 
 .formRandom_button:hover {

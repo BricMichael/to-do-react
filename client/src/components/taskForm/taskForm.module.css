@@ -44,3 +44,9 @@
 .formTask_input:focus, .formTask_input:focus {
     outline: none;
 }
+
+@media screen and ( max-width: 900px ) {
+    .formTask_Title {
+        font-size: 20px;
+    }
+}
