@@ -40,6 +40,7 @@ const TasksDeleted = () => {
                     </div>
                 ))
             }
+            {historyTask.length === 0 && <p className={style.noResult} >Tareas eliminadas (0)</p>}
         </div>
     )
 }

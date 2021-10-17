@@ -5,6 +5,7 @@
     padding: 8px;
     margin-top: 2.5rem;
     border-radius: 3px;
+    margin-bottom: 25px;
 }
 
 .contentTasksCompleted_title {
@@ -36,4 +37,7 @@
 
 .content_button_deleteTask:focus {
     outline: none;
+}
+.noResult {
+    margin-top: 1rem;
 }

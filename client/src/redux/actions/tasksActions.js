@@ -68,13 +68,18 @@ export const updateTaskAction = (id, newData) => async (dispatch) => {
     }
 }
 
-export const taskCompletedAction = async (id, dataState, updateState) => {
+export const taskCompletedAction = (id, dataState, updateState) => async (dispatch) => {
     try {
         const respUser = await alertQuestionItems('¿Tarea completada?');
         if (respUser) {
             const { data } = await api.apiMarkTaskCompleted(id);
             const filterData = dataState.filter(task => task.id !== id);
             updateState(filterData);
+
+            dispatch({
+                type: types.taskCompleted,
+                payload: { id }
+            })
             alertSuccess(data.response);
         }
     } catch (err) {
@@ -82,23 +87,23 @@ export const taskCompletedAction = async (id, dataState, updateState) => {
     }
 }
 
-export const deleteTaskAction = (id, dataState, updateState, component = '') => async (dispatch) => {
-    try { //response
-        const respUser = await alertDeleteItems('¿Desea eliminar la tarea?');
+export const deleteTaskAction = (id, dataState = [], updateState, option) => async (dispatch) => {
+    try {
+        const respUser = await alertDeleteItems(!option ? '¿Desea eliminar la tarea?' : '¿Desea eliminar la frase?');
+
         if (respUser) {
-            const task = dataState.find(item => item.id === id);
             let resultMsg = ''
-            if (task.status) resultMsg = await api.apiDeleteTask(id);
+            if (!option) resultMsg = await api.apiDeleteTask(id);
 
-            dispatch({ type: types.deleteTask, payload: { id } })
+            dispatch({ type: types.deleteTask, payload: { id } });
 
-            if (component === 'TasksCompleted') {
+            if (dataState.length !== 0) {
                 const filterData = dataState.filter(task => task.id !== id);
                 updateState(filterData);
             }
-            alertSuccess(!resultMsg?.data ? 'Frase eliminada' : resultMsg.data.response);
-        }
 
+            alertSuccess(resultMsg?.data ? resultMsg.data.response : 'Frase eliminada');
+        }
     } catch (err) {
         console.log(err);
     }

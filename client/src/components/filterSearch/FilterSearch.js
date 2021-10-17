@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from "../../helpers/useForm";
 import { getTasksPendingAction } from "../../redux/actions/tasksActions";
 import style from './filterSearch.module.css';
@@ -8,8 +8,10 @@ const FilterSearch = ({ setState }) => {
     /*Este useForm permite tener muy limpio el componente de lógica y acelerar el trabajo al mismo tiempo,
     con un solo input no hace la diferencia, pero con un par más, es una excelente opcion.  */
     const dispatch = useDispatch();
+    const tasksPending = useSelector(state => state.task.taskPendingAndPhrases);
+    const [noResults, setNoResults] = useState('');
     const [taskFilters, setTaskFilters] = useState([]);
-    const [values, handleInputChange] = useForm({ filtro: '' });
+    const [values, handleInputChange, reset] = useForm({ filtro: '' });
 
     const getTasksPending = async () => {
         const data = await dispatch(getTasksPendingAction('FilterSearch'));
@@ -18,12 +20,20 @@ const FilterSearch = ({ setState }) => {
 
     useEffect(() => {
         getTasksPending();
-    }, [])
+    }, [tasksPending])
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        setNoResults('');
         const taskSelected = taskFilters.find(task => task.description === values.filtro.trim());
-        setState([taskSelected]);
+
+        if (!taskSelected) {
+            setNoResults('No se han encontrado resultados')
+        } else {
+            setState([taskSelected]);
+            reset();
+        }
+
     }
 
     return (
@@ -55,7 +65,7 @@ const FilterSearch = ({ setState }) => {
 
                 <button type='submit' className={style.formFilter_button} >Seleccionar</button>
             </form>
-            {/* <p>No se han encontrado resultados</p> */}
+            {noResults.length !== 0 && <p>{noResults}</p>}
         </div>
     )
 }

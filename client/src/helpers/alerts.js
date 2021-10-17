@@ -21,7 +21,7 @@ export const alertDeleteItems = async (msgTitle) => {
         // cancelButtonColor: '#d33',
         confirmButtonText: 'Sí, eliminar',
         cancelButtonText: 'Cancelar',
-        width: '455px',
+        width: '450px',
     })
 
     if (isConfirmed) return true;

@@ -16,7 +16,7 @@ const TasksCompleted = () => {
         getTasksCompleted()
     }, [])
 
-    const deleteTask = (id) => dispatch(deleteTaskAction(id, completedTasks, setCompletedTasks, 'TasksCompleted'));
+    const deleteTask = (id) => dispatch(deleteTaskAction(id, completedTasks, setCompletedTasks, false));
 
 
     return (
@@ -41,6 +41,7 @@ const TasksCompleted = () => {
 
                 ))
             }
+            {completedTasks.length === 0 && <p className={style.noResult} >Aún no haz completado alguna de tus tareas...</p>}
         </div>
     )
 }

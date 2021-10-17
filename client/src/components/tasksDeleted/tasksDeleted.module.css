@@ -5,6 +5,7 @@
     padding: 8px;
     margin-top: 2.5rem;
     border-radius: 3px;
+    margin-bottom: 25px;
 }
 .contentTasksDeleted_title {
     font-size: 25px;
@@ -30,4 +31,8 @@
     border: none;
     margin-right: 4px;
     cursor: pointer;
+}
+
+.noResult {
+    margin-top: 1rem;
 }

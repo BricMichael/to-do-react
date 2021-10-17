@@ -70,8 +70,10 @@
     background: transparent;
 }
 
-
 .content_buttons_editTask, .content_buttons_deleteTask, .content_buttons_finishTask {
     font-size: 16px;
 }
 
+.noResults {
+    margin-top: 1rem;
+}
