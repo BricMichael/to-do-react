@@ -82,14 +82,21 @@ export const taskCompletedAction = async (id, dataState, updateState) => {
     }
 }
 
-export const deleteTaskAction = async (id, dataState, updateState) => {
+export const deleteTaskAction = (id, dataState, updateState, component = '') => async (dispatch) => {
     try { //response
         const respUser = await alertDeleteItems('¿Desea eliminar la tarea?');
         if (respUser) {
-            const { data } = await api.apiDeleteTask(id);
-            const filterData = dataState.filter(task => task.id !== id);
-            updateState(filterData);
-            alertSuccess(data.response);
+            const task = dataState.find(item => item.id === id);
+            let resultMsg = ''
+            if (task.status) resultMsg = await api.apiDeleteTask(id);
+
+            dispatch({ type: types.deleteTask, payload: { id } })
+
+            if (component === 'TasksCompleted') {
+                const filterData = dataState.filter(task => task.id !== id);
+                updateState(filterData);
+            }
+            alertSuccess(!resultMsg?.data ? 'Frase eliminada' : resultMsg.data.response);
         }
 
     } catch (err) {

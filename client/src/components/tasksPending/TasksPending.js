@@ -23,7 +23,8 @@ const TasksPending = () => {
     }, [taskPendingAndPhrases])
 
 
-    const deleteTask = (id) => deleteTaskAction(id, tasksPending, setTasksPending);
+    const deleteTask = (id) => dispatch(deleteTaskAction(id, tasksPending, setTasksPending));
+
 
     const taskCompleted = (id) => taskCompletedAction(id, tasksPending, setTasksPending);
 
@@ -35,8 +36,13 @@ const TasksPending = () => {
     const optionSelected = ({ target }) => {
         if (target.value === 'all') {
             setTasksPending(taskPendingAndPhrases)
+        } else if (target.value === 'phrases') {
+            const phrasesCats = taskPendingAndPhrases.filter(value => value.type);
+            setTasksPending(phrasesCats);
+        } else {
+            const tasks = taskPendingAndPhrases.filter(value => value.status);
+            setTasksPending(tasks);
         }
-        console.log(target.value)
     }
 
     return (
@@ -63,24 +69,33 @@ const TasksPending = () => {
                     tasksPending.map(task => (
                         <div className={style.contentDescription_buttons} key={task.id} >
                             <div className={style.contentDescription}>
-                                <p className={style.contentDescription_task}>{task.description}</p>
+                                <p className={style.contentDescription_task}>
+                                    {task.description}  {!task.type ? '' : <i className="fas fa-cat"></i>}
+                                </p>
                             </div>
                             <div className={style.content_buttons}>
-                                <button
-                                    className={style.content_buttons_finishTask}
-                                    type='button'
-                                    onClick={() => taskCompleted(task.id)}
-                                >
-                                    <i className="far fa-check-circle"></i>
-                                </button>
+                                {
+                                    !task.type
+                                        ?
+                                        <>
+                                            <button
+                                                className={style.content_buttons_finishTask}
+                                                type='button'
+                                                onClick={() => taskCompleted(task.id)}
+                                            >
+                                                <i className="far fa-check-circle"></i>
+                                            </button>
 
-                                <button
-                                    className={style.content_buttons_editTask}
-                                    type='button'
-                                    onClick={() => editTask(task)}
-                                >
-                                    <i className="far fa-edit"></i>
-                                </button>
+                                            <button
+                                                className={style.content_buttons_editTask}
+                                                type='button'
+                                                onClick={() => editTask(task)}
+                                            >
+                                                <i className="far fa-edit"></i>
+                                            </button>
+                                        </>
+                                        : ''
+                                }
 
                                 <button
                                     className={style.content_buttons_deleteTask}

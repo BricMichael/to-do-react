@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { deleteTaskAction, getTasksCompletedAction } from '../../redux/actions/tasksActions';
 import style from './tasksCompleted.module.css';
 
 const TasksCompleted = () => {
-
+    const dispatch = useDispatch();
     const [completedTasks, setCompletedTasks] = useState([]);
 
     const getTasksCompleted = async () => {
@@ -15,7 +16,7 @@ const TasksCompleted = () => {
         getTasksCompleted()
     }, [])
 
-    const deleteTask = (id) => deleteTaskAction(id, completedTasks, setCompletedTasks);
+    const deleteTask = (id) => dispatch(deleteTaskAction(id, completedTasks, setCompletedTasks, 'TasksCompleted'));
 
 
     return (

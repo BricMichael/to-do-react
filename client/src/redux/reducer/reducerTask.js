@@ -24,6 +24,18 @@ const taskReducer = (state = initialState, action) => {
                     task => task.id === action.payload.id ? { ...task, description: action.payload.description } : task
                 )
             }
+        case types.phrasesCatsRandoms:
+            return {
+                ...state,
+                taskPendingAndPhrases: [...action.payload, ...state.taskPendingAndPhrases]
+            }
+        case types.deleteTask:
+            return {
+                ...state,
+                taskPendingAndPhrases: state.taskPendingAndPhrases.filter(
+                    item => item.id !== action.payload.id
+                )
+            }
 
 
         default:

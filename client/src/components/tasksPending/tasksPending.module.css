@@ -57,7 +57,7 @@
 .content_buttons {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-end;
     width: 15%;
 }
 .content_buttons_finishTask, .content_buttons_editTask, .content_buttons_deleteTask  { 
