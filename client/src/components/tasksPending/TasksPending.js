@@ -20,8 +20,7 @@ const TasksPending = () => {
     useEffect(() => {
         //evitar otra llamada a la API al renderizar el componente. usar la data del estado global.
         tasksPending.length === 0 && getTasks();
-
-    }, [tasksPending])
+    }, [])
 
     const dataTasksPending = filterTask.length >= 1 ? filterTask : tasksPending;
 

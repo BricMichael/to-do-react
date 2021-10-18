@@ -1,5 +1,5 @@
 export const types = {
-    newTesk: '[TASK] NewTask',
+    newTask: '[TASK] NewTask',
     dataTaskEdit: '[TASK] dataTaskEdit',
     updateTask: '[TASK] UpdateTask',
     taskCompleted: '[TASK] taskCompleted',

@@ -8,7 +8,7 @@ export const getTasksPendingAction = (component = '') => async (dispatch) => {
         const { data } = await api.apiGetPendingTasks();
 
         (data.length >= 1 && component === '') && dispatch({
-            type: types.newTesk,
+            type: types.newTask,
             payload: data
         })
         return data;
@@ -88,12 +88,12 @@ export const taskCompletedAction = (id, dataState, updateState) => async (dispat
 }
 
 export const deleteTaskAction = (id, dataState = [], updateState, option) => async (dispatch) => {
-    try {
+    try { // option es una variable booleana, si es falsa se esta eliminando una tarea, sino una frase de gato.
         const respUser = await alertDeleteItems(!option ? '¿Desea eliminar la tarea?' : '¿Desea eliminar la frase?');
 
         if (respUser) {
-            let resultMsg = ''
-            if (!option) resultMsg = await api.apiDeleteTask(id);
+            let resultMsg = {};
+            if (!option) resultMsg = await api.apiDeleteTask(id); // si option es true no hacer un llamadal al backend.
 
             dispatch({ type: types.deleteTask, payload: { id } });
 
