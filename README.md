@@ -4,28 +4,32 @@
 
 ![screenshot](https://res.cloudinary.com/michaelbric/image/upload/v1634524582/CRUD_prueba_r1ufzg.png)
 
-Tuve en cuenta los siguientes puntos requeridos:
-1- Manejo de Eventos.
-2- Manejo de responsive.
-3- Uso de componentes.
-4- Organización del lenguaje y sus archivos.
-5- GIT. Seguimiento del proceso de la prueba.
-6- Manejo de API Rest. Creación del Backend y base de datos con Nodejs Y PostgreSQl, para crear el CRUD ToDo.
-7- Interfaz. Diseño agradable.
-8- Animaciones. Animaciones de eventos para una buena cercanía con el usuario o cliente final.
+<div>
+    <h2>Tuve en cuenta los siguientes puntos requeridos:</h2>
+    <p>1- Manejo de Eventos.</p>
+    <p>2- Manejo de responsive.</p>
+    <p>3- Uso de componentes.</p>
+    <p>4- Organización del lenguaje y sus archivos.</p>
+    <p>5- GIT. Seguimiento del proceso de la prueba.</p>
+    <p>6- Manejo de API Rest. Creación del Backend y base de datos con Nodejs Y PostgreSQl, para crear el CRUD ToDo.</p>
+    <p>7- Interfaz. Diseño agradable.</p>
+    <p>8- Animaciones. Animaciones de eventos para una buena cercanía con el usuario o cliente final.</p>
+</div>
 
-Nota: Decidí usar las librerías y prácticas de un Proyecto real, como:
-Hooks.
-UseHooks.
-Axios.
-Redux para el manejo del estado global.
-Async - Await. Manejo de promesas.
-Orden de carpetas y componentes.
-Base de datos - PostgreSQL.
-Css module. Marcar la diferencia y la originalidad del producto a realizar.
-Creación de API REST.
+<div>   
+    <p>Nota: Decidí usar las librerías y prácticas de un Proyecto real, como:</p>
+    <p>Hooks.</p>
+    <p>UseHooks.</p>
+    <p>Axios.</p>
+    <p>Redux para el manejo del estado global.</p>
+    <p>Async - Await. Manejo de promesas.</p>
+    <p>Orden de carpetas y componentes.</p>
+    <p>Base de datos - PostgreSQL.</p>
+    <p>Css module. Marcar la diferencia y la originalidad del producto a realizar.</p>
+    <p>Creación de API REST.</p>
+</div>
 
 ## Contacto
 
--Email: bricmichael@gmail.com
--Linkedin: Michael Jordan Briceño.
+<p>-Email: bricmichael@gmail.com</p>
+<p>-Linkedin: Michael Jordan Briceño.</p>
